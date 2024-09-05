@@ -69,8 +69,8 @@ function changeImage(src) {
 
 function setCurrentDateTime() {
     const now = new Date();
-    const todayDate = now.toLocaleDateString('ar-EG'); // استخدام التاريخ المحلي بصيغة عربية
-    const time = now.toLocaleTimeString('ar-EG', { hour12: false }); // استخدام الوقت بصيغة 24 ساعة
+    const todayDate = now.toLocaleDateString('EG'); // استخدام التاريخ المحلي بصيغة عربية
+    const time = now.toLocaleTimeString('EG', { hour12: false }); // استخدام الوقت بصيغة 24 ساعة
 
     document.getElementById('date').value = todayDate;
     document.getElementById('time').value = time;
