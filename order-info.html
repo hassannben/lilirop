@@ -6,10 +6,8 @@
     <title>معلومات الطلب</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
     <style>
-        body {
+       body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             color: #333;
@@ -81,25 +79,6 @@
             color: #0056b3;
             border-bottom: 3px solid #0056b3;
         }
-        .qr-container {
-            display: flex;
-            align-items: center;
-            margin-top: 30px;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .qr-container div {
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
-        }
-        .order-number {
-            font-size: 20px;
-            font-weight: 600;
-            color: #007bff;
-            margin-top: 15px;
-        }
         @media (max-width: 768px) {
             .order-info {
                 padding: 25px;
@@ -147,42 +126,25 @@
             <p><strong>تاريخ الطلب:</strong> <span id="date">غير متوفر</span></p>
             <p><strong>وقت الطلب:</strong> <span id="time">غير متوفر</span></p>
 
-            <div class="qr-container">
-                <div id="qrCode"></div>
-                <p class="order-number" id="qrOrderNumber">غير متوفر</p>
-            </div>
         </div>
     </div>
 
     <script>
-  const urlParams = new URLSearchParams(window.location.search);
-const orderNumber = urlParams.get('orderNumber') || 'غير متوفر';
-console.log("Order Number:", orderNumber);
-document.getElementById('orderNumber').textContent = orderNumber;    
-        // عرض معلومات الطلب
-        document.getElementById('orderNumber').textContent = orderNumber;
-        document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
-        document.getElementById('name').textContent = urlParams.get('name') || 'غير متوفر';
-        document.getElementById('phone').textContent = urlParams.get('phone') || 'غير متوفر';
-        document.getElementById('city').textContent = urlParams.get('city') || 'غير متوفر';
-        document.getElementById('address').textContent = urlParams.get('address') || 'غير متوفر';
-        document.getElementById('quantity').textContent = urlParams.get('quantity') || 'غير متوفر';
-        document.getElementById('deliveryCost').textContent = urlParams.get('deliveryCost') || 'غير متوفر';
-        document.getElementById('total').textContent = urlParams.get('total') || 'غير متوفر';
-        document.getElementById('date').textContent = urlParams.get('date') || 'غير متوفر';
-        document.getElementById('time').textContent = urlParams.get('time') || 'غير متوفر';
-        
-        document.getElementById('qrOrderNumber').textContent = orderNumber;
+   const urlParams = new URLSearchParams(window.location.search);
 
-        // توليد رمز QR لرقم الطلب
-        new QRCode(document.getElementById("qrCode"), {
-            text: orderNumber,
-            width: 128,
-            height: 128,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.L
-        });
+// عرض القيم من عنوان URL أو القيمة الافتراضية إذا لم تكن موجودة
+document.getElementById('orderNumber').textContent = urlParams.get('orderNumber') || 'غير متوفر';
+document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
+document.getElementById('name').textContent = urlParams.get('name') || 'غير متوفر';
+document.getElementById('phone').textContent = urlParams.get('phone') || 'غير متوفر';
+document.getElementById('city').textContent = urlParams.get('city') || 'غير متوفر';
+document.getElementById('address').textContent = urlParams.get('address') || 'غير متوفر';
+document.getElementById('quantity').textContent = urlParams.get('quantity') || 'غير متوفر';
+document.getElementById('deliveryCost').textContent = urlParams.get('deliveryCost') || 'غير متوفر';
+document.getElementById('total').textContent = urlParams.get('total') || 'غير متوفر';
+document.getElementById('date').textContent = urlParams.get('date') || 'غير متوفر';
+document.getElementById('time').textContent = urlParams.get('time') || 'غير متوفر';
+
     </script>
 </body>
 </html>
