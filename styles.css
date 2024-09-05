@@ -1,0 +1,176 @@
+/* التصميم الأساسي */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+/* تصميم معرض الصور */
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.main-image {
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 30px; /* زيادة المسافة بين الصورة الرئيسية والمعرض */
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px; /* إضافة مسافة أعلى لمجموعة الصور الصغيرة */
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* تصميم نموذج الطلب */
+.order-form-container {
+    background-color: #cfebf4;
+    border: 1px solid #c9e0e7; /* تعديل لون الحدود لتناسب اللون الخلفي */
+    padding: 20px;
+    max-width: 600px; /* تحديد أقصى عرض لنموذج الطلب */
+    margin: 20px auto; /* إضافة مسافة علوية وسفلية */
+    border-radius: 8px; /* زيادة انحناء الزوايا */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.order-form-container label {
+    font-weight: bold; /* جعل النص في التسمية أكثر وضوحاً */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.order-form-container input[type="text"], 
+.order-form-container input[type="tel"], 
+.order-form-container input[type="number"], 
+.order-form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* تأثير الانتقال عند التفاعل */
+}
+
+.order-form-container input[type="text"]:focus,
+.order-form-container input[type="tel"]:focus,
+.order-form-container input[type="number"]:focus,
+.order-form-container select:focus {
+    border-color: #4CAF50; /* تغيير لون الحدود عند التركيز */
+    outline: none; /* إزالة حدود التركيز الافتراضية */
+    box-shadow: 0 0 5px rgba(0, 150, 0, 0.2); /* إضافة ظل خفيف للتركيز */
+}
+
+.order-form-container input[type="text"]::placeholder,
+.order-form-container input[type="tel"]::placeholder,
+.order-form-container input[type="number"]::placeholder,
+.order-form-container select::placeholder {
+    color: #888; /* لون النص التوضيحي */
+    font-style: italic; /* جعل النص التوضيحي مائل */
+}
+
+.order-form-container input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    min-height: 50px; /* للحفاظ على حجم زر متناسق */
+    transition: background-color 0.3s, transform 0.2s; /* تأثير الانتقال عند التفاعل */
+}
+
+.order-form-container input[type="submit"]:hover {
+    background-color: #45a049;
+    transform: scale(1.02); /* تكبير خفيف عند التمرير */
+}
+
+/* الرسائل الخطأ */
+.order-form-container .error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* تصميم خاص للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .thumbnail {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 600px) {
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .order-form-container {
+        padding: 15px;
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .order-form-container label {
+        font-size: 14px; /* تصغير حجم الخط للتسمية */
+    }
+
+    .order-form-container input[type="text"],
+    .order-form-container input[type="tel"],
+    .order-form-container input[type="number"],
+    .order-form-container select {
+        font-size: 14px; /* تصغير حجم الخط للعناصر */
+        padding: 8px; /* تصغير التباعد الداخلي */
+    }
+
+    .order-form-container input[type="submit"] {
+        padding: 12px; /* تصغير التباعد الداخلي للزر */
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* لتحاذي المحتوى أفقيًا في المركز */
+    align-items: center; /* لتحاذي المحتوى رأسيًا في المركز */
+}
+
+.productName {
+    margin: 0; /* إزالة الهوامش الافتراضية إذا لزم الأمر */
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب الشراء</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="gallery">
+        <div class="main-image">
+            <img id="currentImage" src="images/IPHON.jpg" alt="الصورة الكبيرة">
+        </div>
+        <div class="thumbnail-container">
+            <img class="thumbnail" src="images/image0_0.jpg" alt="صورة صغيرة"
+                onclick="changeImage('images/image0_0.jpg')">
+            <img class="thumbnail" src="images/image1_.jpg" alt="صورة صغيرة"
+                onclick="changeImage('images/image1_.jpg')">
+            <img class="thumbnail" src="images/ai.png" alt="صورة صغيرة" onclick="changeImage('images/ai.png')">
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="productName">هاتف</h1>
+    </div>
+
+    <!-- قسم نموذج الطلب -->
+    <section class="order-form-container">
+        <h2>طلب الشراء</h2>
+        <form id="orderForm" onsubmit="submitOrder(event)">
+            <input type="hidden" id="product-id" name="product-id" value="product-id-value">
+            <input type="text" id="name" name="name" placeholder="الاسم و اللقب" required>
+            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required
+                style="direction: rtl; text-align: right;">
+            <select id="city" name="city" required onchange="updateTotals()">
+                <option value="اختر الولاية">اختر الولاية</option>
+                <option value="أدرار">01 - أدرار</option>
+                <option value="الشلف">02 - الشلف</option>
+                <!-- <option value="الأغواط">03 - الأغواط</option> -->
+                <option value="أم البواقي">04 - أم البواقي</option>
+                <option value="باتنة">05 - باتنة</option>
+                <option value="بجاية">06 - بجاية</option>
+                <option value="بسكرة">07 - بسكرة</option>
+                <option value="بشار">08 - بشار</option>
+                <option value="البليدة">09 - البليدة</option>
+                <!--<option value="البويرة">10 - البويرة</option>-->
+                <!--<option value="تمنراست">11 - تمنراست</option>-->
+                <option value="تبسة">12 - تبسة</option>
+                <option value="تلمسان">13 - تلمسان</option>
+                <option value="تيارت">14 - تيارت</option>
+                <option value="تيزي وزو">15 - تيزي وزو</option>
+                <option value="الجزائر">16 - الجزائر</option>
+                <option value="الجلفة">17 - الجلفة</option>
+                <option value="جيجل">18 - جيجل</option>
+                <!--<option value="سطيف">19 - سطيف</option>-->
+                <option value="سعيدة">20 - سعيدة</option>
+                <option value="سكيكدة">21 - سكيكدة</option>
+                <option value="سيدي بلعباس">22 - سيدي بلعباس</option>
+                <!--<option value="عنابة">23 - عنابة</option>-->
+                <option value="قالمة">24 - قالمة</option>
+                <option value="قسنطينة">25 - قسنطينة</option>
+                <option value="المدية">26 - المدية</option>
+                <!--<option value="مستغانم">27 - مستغانم</option>
+                <option value="المسيلة">28 - المسيلة</option>
+                <option value="معسكر">29 - معسكر</option>-->
+                <option value="ورقلة">30 - ورقلة</option>
+                <option value="وهران">31 - وهران</option>
+                <option value="البيض">32 - البيض</option>
+                <!-- <option value="إليزي">33 - إليزي</option>-->
+                <option value="برج بوعريريج">34 - برج بوعريريج</option>
+                <option value="بومرداس">35 - بومرداس</option>
+                <option value="الطارف">36 - الطارف</option>
+                <option value="تندوف">37 - تندوف</option>
+                <option value="تيسمسيلت">38 - تيسمسيلت</option>
+                <option value="الوادي">39 - الوادي</option>
+                <option value="خنشلة">40 - خنشلة</option>
+                <!-- <option value=" سوق أهراس">41 - سوق أهراس</option>-->
+                <option value="تيبازة">42 - تيبازة</option>
+                <option value="ميلة">43 - ميلة</option>
+                <option value="عين الدفلة">44 - عين الدفلة</option>
+                <option value="النعامة">45 - النعامة</option>
+                <option value="عين تيموشنت">46 - عين تيموشنت</option>
+                <option value=" غرداية">47 - غرداية</option>
+                <option value=" غليزان">48 - غليزان</option>
+                <option value="تيميمون">49 - تيميمون</option>
+                <option value="برج باجي مختار">50 - برج باجي مختار</option>
+                <option value="أولاد جلال">51 - أولاد جلال</option>
+                <option value="بني عباس">52 - بني عباس</option>
+                <option value="عين صالح">53 - عين صالح</option>
+                <option value="عين قزام">54 - عين قزام</option>
+                <option value=" تقرت">55 - تقرت</option>
+                <option value=" جانت">56 - جانت</option>
+                <option value=" المغير">57 - المغير</option>
+                <option value="المنيعة">58 - المنيعة</option>
+
+                <!-- أضف باقي الولايات هنا إذا لزم الأمر -->
+            </select>
+            <input type="text" id="address" name="address" placeholder="العنوان" required>
+            <input type="number" id="quantity" name="quantity" placeholder="الكمية" required
+            oninput="updateTotals()">
+     
+            <input type="text" id="deliveryCost" name="deliveryCost" placeholder="تكلفة التوصيل" readonly>
+            <input type="text" id="total" name="total" placeholder="المجموع" readonly>
+            <input type="hidden" id="date" name="date">
+            <input type="hidden" id="time" name="time">
+            <input type="hidden" id="productName" name="productName" value="هاتف" required>
+
+            <input type="submit" value="تأكيد الطلب">
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
