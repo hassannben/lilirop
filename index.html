@@ -14,13 +14,12 @@
             <img id="currentImage" src="images/IPHON.jpg" alt="الصورة الكبيرة">
         </div>
         <div class="thumbnail-container">
-            <img class="thumbnail" src="images/image0_0.jpg" alt="صورة صغيرة"
-                onclick="changeImage('images/image0_0.jpg')">
-            <img class="thumbnail" src="images/image1_.jpg" alt="صورة صغيرة"
-                onclick="changeImage('images/image1_.jpg')">
+            <img class="thumbnail" src="images/image0_0.jpg" alt="صورة صغيرة" onclick="changeImage('images/image0_0.jpg')">
+            <img class="thumbnail" src="images/image1_.jpg" alt="صورة صغيرة" onclick="changeImage('images/image1_.jpg')">
             <img class="thumbnail" src="images/ai.png" alt="صورة صغيرة" onclick="changeImage('images/ai.png')">
         </div>
     </div>
+
     <div class="container">
         <h1 class="productName">هاتف</h1>
     </div>
@@ -31,9 +30,9 @@
         <form id="orderForm" onsubmit="submitOrder(event)">
             <input type="hidden" id="product-id" name="product-id" value="product-id-value">
             <input type="text" id="name" name="name" placeholder="الاسم و اللقب" required>
-            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required
-                style="direction: rtl; text-align: right;">
+            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required style="direction: rtl; text-align: right;">
             <select id="city" name="city" required onchange="updateTotals()">
+                <option value="اختر الولاية">اختر الولاية</option>
                 <option value="اختر الولاية">اختر الولاية</option>
                 <option value="أدرار">01 - أدرار</option>
                 <option value="الشلف">02 - الشلف</option>
@@ -93,19 +92,14 @@
                 <option value=" جانت">56 - جانت</option>
                 <option value=" المغير">57 - المغير</option>
                 <option value="المنيعة">58 - المنيعة</option>
-
-                <!-- أضف باقي الولايات هنا إذا لزم الأمر -->
             </select>
             <input type="text" id="address" name="address" placeholder="العنوان" required>
-            <input type="number" id="quantity" name="quantity" placeholder="الكمية" required
-            oninput="updateTotals()">
-     
+            <input type="number" id="quantity" name="quantity" placeholder="الكمية" required oninput="updateTotals()">
             <input type="text" id="deliveryCost" name="deliveryCost" placeholder="تكلفة التوصيل" readonly>
             <input type="text" id="total" name="total" placeholder="المجموع" readonly>
             <input type="hidden" id="date" name="date">
             <input type="hidden" id="time" name="time">
             <input type="hidden" id="productName" name="productName" value="هاتف" required>
-            <input type="hidden" id="orderNumber" name="orderNumber"required>
             <input type="submit" value="تأكيد الطلب">
         </form>
     </section>

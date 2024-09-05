@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معلومات الطلب</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
+        /* Your existing CSS styles here */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -143,25 +143,33 @@
             <p><strong>المجموع:</strong> <span id="total">غير متوفر</span></p>
             <p><strong>تاريخ الطلب:</strong> <span id="date">غير متوفر</span></p>
             <p><strong>وقت الطلب:</strong> <span id="time">غير متوفر</span></p>
-
         </div>
     </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
+      document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
 
-        // عرض القيم من عنوان URL أو القيمة الافتراضية إذا لم تكن موجودة
-        document.getElementById('orderNumber').textContent = urlParams.get('orderNumber') || 'غير متوفر';
-        document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
-        document.getElementById('name').textContent = urlParams.get('name') || 'غير متوفر';
-        document.getElementById('phone').textContent = urlParams.get('phone') || 'غير متوفر';
-        document.getElementById('city').textContent = urlParams.get('city') || 'غير متوفر';
-        document.getElementById('address').textContent = urlParams.get('address') || 'غير متوفر';
-        document.getElementById('quantity').textContent = urlParams.get('quantity') || 'غير متوفر';
-        document.getElementById('deliveryCost').textContent = urlParams.get('deliveryCost') || 'غير متوفر';
-        document.getElementById('total').textContent = urlParams.get('total') || 'غير متوفر';
-        document.getElementById('date').textContent = urlParams.get('date') || 'غير متوفر';
-        document.getElementById('time').textContent = urlParams.get('time') || 'غير متوفر';
+    // Function to safely update text content
+    function updateTextContent(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value || 'غير متوفر';
+        }
+    }
+
+    // Update elements
+    updateTextContent('productName', urlParams.get('productName'));
+    updateTextContent('name', urlParams.get('name'));
+    updateTextContent('phone', urlParams.get('phone'));
+    updateTextContent('city', urlParams.get('city'));
+    updateTextContent('address', urlParams.get('address'));
+    updateTextContent('quantity', urlParams.get('quantity'));
+    updateTextContent('deliveryCost', urlParams.get('deliveryCost'));
+    updateTextContent('total', urlParams.get('total'));
+    updateTextContent('date', urlParams.get('date'));
+    updateTextContent('time', urlParams.get('time'));
+});
 
     </script>
 </body>

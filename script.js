@@ -53,14 +53,21 @@ const deliveryCosts = {
 function updateTotals() {
     const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
     const city = document.getElementById('city').value;
-    let deliveryCost = deliveryCosts[city] || 0;
+    let deliveryCost = 0;
+
+    // تحديد تكلفة التوصيل بناءً على المدينة
+    if (city && deliveryCosts[city] !== undefined) {
+        deliveryCost = deliveryCosts[city];
+    } else {
+        deliveryCost = 0; // أو قيمة افتراضية إذا كانت المدينة غير محددة
+    }
 
     // حساب الإجمالي
     const total = (productPrice * quantity) + deliveryCost;
 
     // تحديث القيم في النموذج
-    document.getElementById('deliveryCost').value = deliveryCost > 0 ? `${deliveryCost} دج` : 'سعر التوصيل غير محدد';
-    document.getElementById('total').value = `${total} دج`;
+    document.getElementById('deliveryCost').value = deliveryCost > 0 ? deliveryCost + ' دج' : 'سعر التوصيل ';
+    document.getElementById('total').value = total + ' دج';
 }
 
 function changeImage(src) {
@@ -68,10 +75,11 @@ function changeImage(src) {
 }
 
 function setCurrentDateTime() {
-    const now = new Date();
-    const todayDate = now.toLocaleDateString('EG'); // استخدام التاريخ المحلي بصيغة عربية
-    const time = now.toLocaleTimeString('EG', { hour12: false }); // استخدام الوقت بصيغة 24 ساعة
-
+    var now = new Date();
+    var todayDate = now.toLocaleDateString('EG'); // استخدام التاريخ المحلي في الصيغة العربية
+    var time = now.toLocaleTimeString('EG', { hour12: false }); // استخدام الوقت بصيغة 24 ساعة
+  
+    // تعيين تاريخ ووقت الطلب
     document.getElementById('date').value = todayDate;
     document.getElementById('time').value = time;
 }
@@ -81,10 +89,10 @@ window.onload = function() {
     document.getElementById('quantity').value = 1; // تعيين القيمة الافتراضية إلى 1
     updateTotals(); // تحديث القيم الأولية
 };
-
 async function submitOrder(event) {
     event.preventDefault(); // إيقاف الإرسال الافتراضي للنموذج
 
+    // الحصول على معلومات النموذج
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const city = document.getElementById('city').value.trim();
@@ -96,16 +104,19 @@ async function submitOrder(event) {
     const time = document.getElementById('time').value.trim();
     const productName = document.getElementById('productName').value.trim();
 
+    // التحقق من أن الكمية أكبر من 0
     if (quantity <= 0) {
         alert("يرجى إدخال كمية صحيحة أكبر من 0");
-        return;
+        return; // إيقاف تنفيذ الدالة
     }
 
+    // التحقق من أن جميع الحقول غير فارغة
     if (!name || !phone || !city || !address || !productName) {
         alert("يرجى ملء جميع الحقول.");
         return;
     }
 
+    // إرسال البيانات إلى Google Apps Script
     const formData = new FormData();
     formData.append('product-id', 'product-id-value');
     formData.append('name', name);
@@ -118,7 +129,7 @@ async function submitOrder(event) {
     formData.append('date', date);
     formData.append('time', time);
     formData.append('productName', productName);
-
+  
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbyipcoqqRFSG60QhUcNCO4T32BwwdVq9xpU3LAnfr5esggXG8F25FeMYwOn0aBaMZBK/exec', {
             method: 'POST',
@@ -126,10 +137,11 @@ async function submitOrder(event) {
         });
 
         if (!response.ok) {
-            throw new Error('فشل في الاتصال بالخادم.');
+            throw new Error('Network response was not ok.');
         }
 
-        window.location.href = 'https://hassannben.github.io/lilirop/order-info.html?' + new URLSearchParams({
+        // إعادة توجيه المستخدم إلى صفحة معلومات الطلب
+        window.location.href = 'order-info.html?' + new URLSearchParams({
             name,
             phone,
             city,
@@ -142,7 +154,8 @@ async function submitOrder(event) {
             productName
         }).toString();
     } catch (error) {
-        console.error('خطأ:', error);
+        console.error('Error:', error);
         alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
     }
 }
+
