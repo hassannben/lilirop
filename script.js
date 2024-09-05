@@ -49,50 +49,32 @@ const deliveryCosts = {
     "عين صلاح": 1500,
     "تندوف": 1700
 };
-
+// Function to update the delivery cost and total based on quantity and city
 function updateTotals() {
     const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
     const city = document.getElementById('city').value;
     let deliveryCost = 0;
 
-    // تحديد تكلفة التوصيل بناءً على المدينة
+    // Determine delivery cost based on city
     if (city && deliveryCosts[city] !== undefined) {
         deliveryCost = deliveryCosts[city];
     } else {
-        deliveryCost = 0; // أو قيمة افتراضية إذا كانت المدينة غير محددة
+        deliveryCost = 0; // Default cost if city is not found
     }
 
-    // حساب الإجمالي
+    // Calculate total price
     const total = (productPrice * quantity) + deliveryCost;
 
-    // تحديث القيم في النموذج
-    document.getElementById('deliveryCost').value = deliveryCost > 0 ? deliveryCost + ' دج' : 'سعر التوصيل ';
-    document.getElementById('total').value = total + ' دج';
+    // Update form fields with the calculated values
+    document.getElementById('deliveryCost').value = deliveryCost > 0 ? `${deliveryCost} دج` : 'سعر التوصيل غير محدد';
+    document.getElementById('total').value = `${total} دج`;
 }
 
-function changeImage(src) {
-    document.getElementById('currentImage').src = src;
-}
-
-function setCurrentDateTime() {
-    var now = new Date();
-    var todayDate = now.toLocaleDateString('EG'); // استخدام التاريخ المحلي في الصيغة العربية
-    var time = now.toLocaleTimeString('EG', { hour12: false }); // استخدام الوقت بصيغة 24 ساعة
-  
-    // تعيين تاريخ ووقت الطلب
-    document.getElementById('date').value = todayDate;
-    document.getElementById('time').value = time;
-}
-
-window.onload = function() {
-    setCurrentDateTime();
-    document.getElementById('quantity').value = 1; // تعيين القيمة الافتراضية إلى 1
-    updateTotals(); // تحديث القيم الأولية
-};
+// Function to handle form submission
 async function submitOrder(event) {
-    event.preventDefault(); // إيقاف الإرسال الافتراضي للنموذج
+    event.preventDefault(); // Prevent the default form submission
 
-    // الحصول على معلومات النموذج
+    // Retrieve form values
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const city = document.getElementById('city').value.trim();
@@ -104,19 +86,19 @@ async function submitOrder(event) {
     const time = document.getElementById('time').value.trim();
     const productName = document.getElementById('productName').value.trim();
 
-    // التحقق من أن الكمية أكبر من 0
+    // Validate quantity
     if (quantity <= 0) {
         alert("يرجى إدخال كمية صحيحة أكبر من 0");
-        return; // إيقاف تنفيذ الدالة
+        return;
     }
 
-    // التحقق من أن جميع الحقول غير فارغة
+    // Validate that all required fields are filled
     if (!name || !phone || !city || !address || !productName) {
         alert("يرجى ملء جميع الحقول.");
         return;
     }
 
-    // إرسال البيانات إلى Google Apps Script
+    // Prepare data to send
     const formData = new FormData();
     formData.append('product-id', 'product-id-value');
     formData.append('name', name);
@@ -129,7 +111,7 @@ async function submitOrder(event) {
     formData.append('date', date);
     formData.append('time', time);
     formData.append('productName', productName);
-  
+
     try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbyipcoqqRFSG60QhUcNCO4T32BwwdVq9xpU3LAnfr5esggXG8F25FeMYwOn0aBaMZBK/exec', {
             method: 'POST',
@@ -140,7 +122,7 @@ async function submitOrder(event) {
             throw new Error('Network response was not ok.');
         }
 
-        // إعادة توجيه المستخدم إلى صفحة معلومات الطلب
+        // Redirect to order info page
         window.location.href = 'order-info.html?' + new URLSearchParams({
             name,
             phone,
@@ -159,3 +141,20 @@ async function submitOrder(event) {
     }
 }
 
+function changeImage(src) {
+    document.getElementById('currentImage').src = src;
+}
+// JavaScript
+document.getElementById('videoButton').onclick = function() {
+    document.getElementById('videoModal').style.display = 'block';
+}
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('videoModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('videoModal')) {
+        document.getElementById('videoModal').style.display = 'none';
+    }
+}

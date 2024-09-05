@@ -1,104 +1,428 @@
-/* التصميم الأساسي */
+/* Basic Design */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     background-color: #f4f4f4;
-    overflow-x: hidden; /* منع التمرير الأفقي */
+    direction: rtl;
+    text-align: right;
+  }
+/* Header Styling */
+header {
+    background: linear-gradient(135deg, #4c57af, #2a3e7a); /* Gradual gradient background */
+    padding: 20px; /* Padding around the content */
+    text-align: center; /* Center-align text within the header */
+    color: #fff; /* Text color */
+    border-bottom: 2px solid #388E3C; /* Bottom border for a subtle accent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    position: relative; /* Allows positioning of pseudo-elements */
+    overflow: hidden; /* Ensures no overflow of pseudo-elements */
 }
 
-/* تصميم معرض الصور */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent overlay */
+    z-index: 0; /* Ensures it is behind text */
+}
+
+/* Modern Header Styling */
+/* Modern Header Styling */
+header h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 3rem; /* Larger font size for prominence */
+    font-weight: 900; /* Extra bold font weight for emphasis */
+    letter-spacing: 2px; /* Increased spacing between letters */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 0, 0, 0.3); /* Enhanced text shadow for depth */
+    color: #ffffff; /* Default text color */
+    z-index: 1; /* Ensures it is above the pseudo-element */
+    position: relative; /* Allows z-index to work */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2)); /* Light gradient background */
+    padding: 10px 20px; /* Padding around the text */
+    border-radius: 12px; /* More rounded corners */
+    transition: all 0.4s ease; /* Smooth transitions for all properties */
+}
+
+/* Hover effects for the header */
+header h1:hover {
+    color: #ffdd57; /* Change color on hover */
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+    transform: scale(1.1) rotate(-1deg); /* Slightly scale up and rotate on hover */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.4)); /* Darker gradient background on hover */
+}
+
+/* Decorative underline with animation */
+header h1::after {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute;
+    bottom: -15px; /* Position below the text */
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ffdd57, #ffab00); /* Gradient underline */
+    border-radius: 5px; /* Rounded corners for the underline */
+    transform: scaleX(0); /* Start with zero width */
+    transform-origin: bottom right; /* Transform from bottom right */
+    transition: transform 0.4s ease, background-color 0.4s ease; /* Smooth transition for underline effect */
+    z-index: -1; /* Place underline behind the text */
+}
+
+header h1:hover::after {
+    transform: scaleX(1); /* Expand underline on hover */
+    transform-origin: bottom left; /* Transform to bottom left */
+    background-color: #ffab00; /* Change underline color on hover */
+}
+
+/* Additional effects for better visuals */
+header {
+    background: radial-gradient(circle at top left, #4c57af, #2c3e50); /* Radial gradient background for the header */
+    padding: 40px; /* Increased padding for header */
+    text-align: center; /* Center-align text within the header */
+    border-bottom: 3px solid #ffdd57; /* Bottom border for a subtle accent */
+}
+
+
+
+header div {
+    max-width: 1200px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 20px; /* Add horizontal padding for better spacing on smaller screens */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* Further adjust font size for very small screens */
+    }
+}
+
+
+  
+  /* Image Gallery Design */
+/* Modern Gallery Styling */
 .gallery {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background: #f5f5f5; /* Light background for the gallery section */
+    border-radius: 12px; /* Rounded corners for the gallery container */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .main-image {
-    width: 80%;
-    max-width: 800px;
-    margin-bottom: 30px; /* زيادة المسافة بين الصورة الرئيسية والمعرض */
+    width: 100%;
+    max-width: 90vw; /* Responsive width */
+    margin-bottom: 30px;
 }
 
 .main-image img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px; /* Larger border radius for a modern look */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
 }
 
+.main-image img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Thumbnail Container */
 .thumbnail-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px; /* إضافة مسافة أعلى لمجموعة الصور الصغيرة */
+    gap: 15px;
+    margin-top: 20px;
 }
 
+/* Thumbnail Styling */
 .thumbnail {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent; /* Add border for a stylish effect */
 }
 
 .thumbnail:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #ff7e5f; /* Highlight border on hover */
 }
 
-/* تصميم نموذج الطلب */
-.order-form-container {
-    background-color: #cfebf4;
-    border: 1px solid #c9e0e7; /* تعديل لون الحدود لتناسب اللون الخلفي */
+/* Responsive Design for Mobile Screens */
+@media (max-width: 768px) {
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .main-image {
+        max-width: 100vw; /* Full width on smaller screens */
+    }
+}
+
+/* Thumbnail Container */
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px; /* Increase gap between thumbnails */
+    margin-top: 20px; /* Add space above thumbnail group */
+}
+
+/* Thumbnail Images */
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px; /* Rounded corners for thumbnails */
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease; /* Smooth transitions */
+    border: 2px solid transparent; /* Initial border */
+    filter: grayscale(50%); /* Slight grayscale effect for a modern look */
+}
+
+.thumbnail:hover {
+    transform: scale(1.15); /* Slightly larger zoom effect on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    border: 2px solid #ff6f61; /* Border color on hover */
+    filter: grayscale(0%); /* Remove grayscale effect on hover */
+}
+
+
+  /* Modern Heading Styling */
+/* Container for Heading */
+.heading-container {
+    display: flex;
+    justify-content: center; /* Center the heading horizontally */
+    align-items: center; /* Center the heading vertically */
+    margin: 20px 0; /* Margin around the container */
+    padding: 10px; /* Padding inside the container */
+    background: #f9f9f9; /* Light background for the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Container for Heading */
+/* Modern Heading Container Styling */
+.heading-container {
+    display: flex;
+    justify-content: center; /* Center the heading horizontally */
+    align-items: center; /* Center the heading vertically */
+    margin: 20px 0; /* Margin around the container */
+    padding: 20px; /* Increased padding for better spacing */
+    background: linear-gradient(145deg, #ffffff, #f0f4f8); /* Light gradient background for a soft look */
+    border-radius: 15px; /* More rounded corners for a modern feel */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05); /* Double shadow for depth */
+    border: 1px solid #e0e5ec; /* Subtle border for definition */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    position: relative; /* Relative positioning for pseudo-elements */
+}
+
+/* Hover effects for the heading container */
+.heading-container:hover {
+    background: linear-gradient(145deg, #e0f7fa, #b2ebf2); /* Slightly different gradient on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.05); /* Enhanced shadow on hover */
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+/* Decorative border on hover */
+.heading-container::before {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent; /* Initial transparent border */
+    border-radius: 15px; /* Match border-radius with the container */
+    background: linear-gradient(45deg, #4caf50, #81c784); /* Gradient border color */
+    background-clip: padding-box; /* Clip background to padding box */
+    z-index: -1; /* Place the border behind the content */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Add glowing border effect on hover */
+.heading-container:hover::before {
+    border-color: #4caf50; /* Glowing border color */
+}
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
     padding: 20px;
-    max-width: 600px; /* تحديد أقصى عرض لنموذج الطلب */
-    margin: 20px auto; /* إضافة مسافة علوية وسفلية */
-    border-radius: 8px; /* زيادة انحناء الزوايا */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #888;
+    width: 80%;
 }
 
-.order-form-container label {
-    font-weight: bold; /* جعل النص في التسمية أكثر وضوحاً */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* Modern Heading Styling */
+h2 {
+    font-size: 2rem; /* حجم الخط */
+    font-weight: 700; /* سمك الخط */
+    color: #333; /* لون النص */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* ظل النص */
+    margin: 0; /* إزالة المسافة الافتراضية */
+    position: relative; /* موقع النسبي للتأثيرات */
+    display: inline-block; /* عرض العناصر بمحتوى محيط */
+    padding: 10px 20px; /* الحشوة حول النص */
+    border-radius: 8px; /* الزوايا الدائرية */
+    background: linear-gradient(145deg, #a2c2e3, #004d99); /* خلفية متدرجة */
+    transition: all 0.3s ease; /* الانتقال السلس */
+    text-align: center; /* توسيط النص */
+}
+
+/* Add a decorative underline on hover */
+h2::after {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #8bc34a; /* Color of the underline */
+    border-radius: 4px; /* Rounded corners for the underline */
+    transform: scaleX(0); /* Start with zero width */
+    transform-origin: bottom right; /* Transform from bottom right */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for underline effect */
+}
+
+h2:hover::after {
+    transform: scaleX(1); /* Expand underline on hover */
+    transform-origin: bottom left; /* Transform to bottom left */
+    background-color: #4caf50; /* Change underline color on hover */
+}
+
+/* Gradient Text Background */
+h2 span {
+    background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Gradient text background */
+    -webkit-background-clip: text; /* Vendor prefix for Chrome and Safari */
+    -moz-background-clip: text;    /* Vendor prefix for older Firefox versions */
+    -ms-background-clip: text;     /* Vendor prefix for Internet Explorer */
+    background-clip: text;         /* Standard property */
+    -webkit-text-fill-color: transparent; /* Make text fill color transparent for WebKit browsers */
+    font-weight: 700; /* Ensure text is bold */
+    font-size: 2.2rem; /* Slightly larger font size for gradient text */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions for gradient text effect */
+}
+
+h2:hover span {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f); /* تدرج اللون عند التمرير */
+    -webkit-background-clip: text; /* تأثير التدرج على النص */
+    -moz-background-clip: text;    /* دعم للمتصفحات القديمة */
+    -ms-background-clip: text;     /* دعم لإنترنت إكسبلورر */
+    background-clip: text;         /* التأثير القياسي */
+    -webkit-text-fill-color: transparent; /* جعل لون النص شفافًا */
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ظل للنص لزيادة التأثير */
+    transform: scale(1.05); /* تكبير النص قليلاً */
+    display: inline-block; /* للتأكد من أن العنصر يظل محاطًا */
+}
+
+
+
+
+
+
+
+  /* Order Form Design */
+  .order-form-container {
+    background-color: #cfebf4;
+    border: 1px solid #c9e0e7;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-form-container label {
+    font-weight: bold;
     display: block;
     margin-bottom: 5px;
-}
-
-.order-form-container input[type="text"], 
-.order-form-container input[type="tel"], 
-.order-form-container input[type="number"], 
-.order-form-container select {
+  }
+  
+  .order-form-container input[type="text"], 
+  .order-form-container input[type="tel"], 
+  .order-form-container input[type="number"], 
+  .order-form-container select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
-    transition: border-color 0.3s; /* تأثير الانتقال عند التفاعل */
-}
-
-.order-form-container input[type="text"]:focus,
-.order-form-container input[type="tel"]:focus,
-.order-form-container input[type="number"]:focus,
-.order-form-container select:focus {
-    border-color: #4CAF50; /* تغيير لون الحدود عند التركيز */
-    outline: none; /* إزالة حدود التركيز الافتراضية */
-    box-shadow: 0 0 5px rgba(0, 150, 0, 0.2); /* إضافة ظل خفيف للتركيز */
-}
-
-.order-form-container input[type="text"]::placeholder,
-.order-form-container input[type="tel"]::placeholder,
-.order-form-container input[type="number"]::placeholder,
-.order-form-container select::placeholder {
-    color: #888; /* لون النص التوضيحي */
-    font-style: italic; /* جعل النص التوضيحي مائل */
-}
-
-.order-form-container input[type="submit"] {
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .order-form-container input[type="text"]:focus,
+  .order-form-container input[type="tel"]:focus,
+  .order-form-container input[type="number"]:focus,
+  .order-form-container select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 150, 0, 0.2);
+  }
+  
+  .order-form-container input[type="text"]::placeholder,
+  .order-form-container input[type="tel"]::placeholder,
+  .order-form-container input[type="number"]::placeholder,
+  .order-form-container select::placeholder {
+    color: #888;
+    font-style: italic;
+  }
+  
+  .order-form-container input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -106,71 +430,186 @@ body {
     cursor: pointer;
     border-radius: 5px;
     width: 100%;
-    min-height: 50px; /* للحفاظ على حجم زر متناسق */
-    transition: background-color 0.3s, transform 0.2s; /* تأثير الانتقال عند التفاعل */
-}
-
-.order-form-container input[type="submit"]:hover {
+    min-height: 50px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .order-form-container input[type="submit"]:hover {
     background-color: #45a049;
-    transform: scale(1.02); /* تكبير خفيف عند التمرير */
-}
-
-/* الرسائل الخطأ */
-.order-form-container .error {
+    transform: scale(1.02);
+  }
+  
+  /* Error Messages */
+  .order-form-container .error {
     color: #ff0000;
     font-size: 14px;
     margin-bottom: 10px;
-}
-
-/* تصميم خاص للشاشات الصغيرة */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
     .thumbnail {
-        width: 70px;
-        height: 70px;
+      width: 120px;
+      height: 120px;
     }
-}
-
-@media (max-width: 600px) {
+  }
+  
+  @media (max-width: 600px) {
     .thumbnail {
-        width: 60px;
-        height: 60px;
+      width: 110px;
+      height: 110px;
     }
-
+  
     .order-form-container {
-        padding: 15px;
-        max-width: 95%;
+      padding: 15px;
+      max-width: 95%;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .thumbnail {
-        width: 50px;
-        height: 50px;
+      width: 100px;
+      height: 100px;
     }
-
+  
     .order-form-container label {
-        font-size: 14px; /* تصغير حجم الخط للتسمية */
+      font-size: 14px;
     }
-
+  
     .order-form-container input[type="text"],
     .order-form-container input[type="tel"],
     .order-form-container input[type="number"],
     .order-form-container select {
-        font-size: 14px; /* تصغير حجم الخط للعناصر */
-        padding: 8px; /* تصغير التباعد الداخلي */
+      font-size: 14px;
+      padding: 8px;
     }
-
+  
     .order-form-container input[type="submit"] {
-        padding: 12px; /* تصغير التباعد الداخلي للزر */
+      padding: 12px;
     }
+  }
+/* Modern Submit Button Styling */
+/* Modern Stylish Submit Button */
+input[type="submit"] {
+    background: linear-gradient(145deg, #6a11cb, #2575fc); /* Stylish gradient background */
+    color: #fff; /* White text color */
+    border: none; /* Remove default border */
+    padding: 14px 30px; /* Padding for a comfortable click area */
+    font-size: 1rem; /* Font size */
+    font-weight: 700; /* Bold text for emphasis */
+    border-radius: 50px; /* Fully rounded corners for a pill shape */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+    text-transform: uppercase; /* Uppercase text for emphasis */
+    letter-spacing: 1.5px; /* Increased letter spacing for readability */
+    outline: none; /* Remove default outline */
+    position: relative; /* For pseudo-element positioning */
+    overflow: hidden; /* Ensure pseudo-element stays within button bounds */
+    font-family: 'Roboto', sans-serif; /* Modern font family */
 }
 
-.container {
+/* Hover effects */
+input[type="submit"]:hover {
+    background: linear-gradient(145deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+    transform: scale(1.05) translateY(-8px); /* Slightly enlarge and lift the button */
+    filter: brightness(1.15); /* Increase brightness on hover */
+}
+
+/* Hover pseudo-element effect */
+input[type="submit"]:before {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3); /* Light accent for hover effect */
+    border-radius: 50%;
+    transition: all 0.5s ease; /* Smooth transition for pseudo-element */
+    transform: translate(-50%, -50%) scale(0); /* Center and scale down */
+    z-index: 0; /* Place behind the button text */
+}
+
+/* Expand pseudo-element on hover */
+input[type="submit"]:hover:before {
+    transform: translate(-50%, -50%) scale(1.4); /* Expand pseudo-element on hover */
+}
+
+/* Focus effect */
+input[type="submit"]:focus {
+    outline: 3px solid #ffcc00; /* Highlight button with an outline when focused */
+    outline-offset: 4px; /* Offset the outline for better visibility */
+}
+
+/* Active state effect */
+input[type="submit"]:active {
+    background: linear-gradient(145deg, #1d4ed8, #4b0082); /* Darker gradient on click */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4); /* Slightly deeper shadow on click */
+    transform: scale(0.98) translateY(0); /* Slightly shrink and remove lift on click */
+    filter: brightness(1.05); /* Slightly increase brightness on click */
+}
+
+
+
+
+
+/* Style for input placeholder */
+/* Style for input placeholder */
+input::placeholder {
+    color: #b0b0b0; /* Light gray color for the placeholder text */
+    font-size: 1rem; /* Font size for readability */
+    font-weight: 300; /* Light font weight */
+    font-family: 'Poppins', sans-serif; /* Modern, clean font family */
+    opacity: 1; /* Ensure placeholder text is fully opaque */
+    transition: color 0.3s ease, transform 0.3s ease, font-size 0.3s ease; /* Smooth transitions */
+}
+
+/* Focus effect on placeholder */
+input:focus::placeholder {
+    color: #ff6f61; /* Change placeholder color on focus */
+    transform: translateY(-20px); /* Move placeholder text up more on focus */
+    font-size: 0.9rem; /* Slightly smaller font size on focus */
+}
+
+/* Style for input field */
+input {
+    border: 2px solid #ddd; /* Light border for the input field */
+    border-radius: 12px; /* Larger border radius for a modern pill shape */
+    padding: 14px 20px; /* Padding inside the input field */
+    font-size: 1rem; /* Font size for input text */
+    font-family: 'Poppins', sans-serif; /* Consistent font family */
+    background-color: #ffffff; /* White background color for the input field */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Focus effect on input field */
+input:focus {
+    border-color: #ff6f61; /* Change border color on focus */
+    box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3); /* Add subtle shadow on focus */
+    background-color: #fafafa; /* Slightly darker background color on focus */
+    outline: none; /* Remove default outline */
+}
+
+
+  
+  .container {
     display: flex;
-    justify-content: center; /* لتحاذي المحتوى أفقيًا في المركز */
-    align-items: center; /* لتحاذي المحتوى رأسيًا في المركز */
-}
-
-.productName {
-    margin: 0; /* إزالة الهوامش الافتراضية إذا لزم الأمر */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .productName {
+    margin: 0;
+  }
+  video {
+    width: auto;
+    max-width: 800px;
+    height: 400px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover; /* Adjust as needed: cover, contain, or fill */
 }

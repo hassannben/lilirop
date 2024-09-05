@@ -6,9 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>طلب الشراء</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="متجر lilirop">
+    <meta property="og:description" content="شاهد الفيديو على متجر lilirop">
+    <meta property="og:image" content="رابط الصورة المصغرة التي تريد عرضها">
+    <meta property="og:video" content="images/5597178895.mp4" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:url" content="https://hassannben.github.io/lilirop/">
+    <meta property="og:site_name" content="متجر lilirop">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:title" content="متجر lilirop">
+    <meta name="twitter:description" content="شاهد الفيديو على متجر lilirop">
+    <meta name="twitter:image" content="رابط الصورة المصغرة التي تريد عرضها">
+    <meta name="twitter:player" content="رابط الفيديو">
+    <meta name="twitter:player:width" content="640">
+    <meta name="twitter:player:height" content="360">
 </head>
 
+
 <body>
+    <header>
+        <div>
+            <h1>متجر lilirop</h1>
+        </div>
+    </header>
+
     <div class="gallery">
         <div class="main-image">
             <img id="currentImage" src="images/IPHON.jpg" alt="الصورة الكبيرة">
@@ -24,13 +49,24 @@
         <h1 class="productName">هاتف</h1>
     </div>
 
-    <!-- قسم نموذج الطلب -->
-    <section class="order-form-container">
-        <h2>طلب الشراء</h2>
+      <!-- قسم نموذج الطلب -->
+      <section class="order-form-container">
+        <div class="heading-container" id="videoButton">
+            <h2>شاهد الفيديو</h2>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal" id="videoModal" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close" aria-label="Close">&times;</span>
+                <video id="videoPlayer" controls autoplay muted>
+                    <source src="images/5597178895.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
         <form id="orderForm" onsubmit="submitOrder(event)">
-            <input type="hidden" id="product-id" name="product-id" value="product-id-value">
-            <input type="text" id="name" name="name" placeholder="الاسم و اللقب" required>
-            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required style="direction: rtl; text-align: right;">
             <select id="city" name="city" required onchange="updateTotals()">
                 <option value="اختر الولاية">اختر الولاية</option>
                 <option value="اختر الولاية">اختر الولاية</option>
@@ -92,18 +128,52 @@
                 <option value=" جانت">56 - جانت</option>
                 <option value=" المغير">57 - المغير</option>
                 <option value="المنيعة">58 - المنيعة</option>
-            </select>
-            <input type="text" id="address" name="address" placeholder="العنوان" required>
+            <input type="hidden" id="product-id" name="product-id" value="product-id-value">
+          
+            <input type="text" id="name" name="name" placeholder="الاسم و اللقب" required>
+            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required style="direction: rtl; text-align: right;">
+          <input type="text" id="address" name="address" placeholder="العنوان" required>
             <input type="number" id="quantity" name="quantity" placeholder="الكمية" required oninput="updateTotals()">
             <input type="text" id="deliveryCost" name="deliveryCost" placeholder="تكلفة التوصيل" readonly>
             <input type="text" id="total" name="total" placeholder="المجموع" readonly>
             <input type="hidden" id="date" name="date">
             <input type="hidden" id="time" name="time">
             <input type="hidden" id="productName" name="productName" value="هاتف" required>
+     
             <input type="submit" value="تأكيد الطلب">
         </form>
     </section>
 
+    <script>
+ document.getElementById('videoButton').onclick = function() {
+        var modal = document.getElementById('videoModal');
+        var video = document.getElementById('videoPlayer');
+        modal.style.display = 'block';
+        
+        // تأكد من تشغيل الفيديو بعد التأخير لضمان تحميله
+        setTimeout(function() {
+            video.play();
+        }, 100);
+    }
+
+    document.querySelector('.close').onclick = function() {
+        var modal = document.getElementById('videoModal');
+        var video = document.getElementById('videoPlayer');
+        modal.style.display = 'none';
+        video.pause(); // إيقاف الفيديو عند إغلاق المودال
+        video.currentTime = 0; // إعادة تعيين توقيت الفيديو إلى البداية
+    }
+
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('videoModal')) {
+            var modal = document.getElementById('videoModal');
+            var video = document.getElementById('videoPlayer');
+            modal.style.display = 'none';
+            video.pause(); // إيقاف الفيديو عند النقر خارج المودال
+            video.currentTime = 0; // إعادة تعيين توقيت الفيديو إلى البداية
+        }
+    }
+    </script>
     <script src="script.js"></script>
 </body>
 
