@@ -10,7 +10,7 @@
     <!-- Open Graph meta tags -->
     <meta property="og:title" content="متجر lilirop">
     <meta property="og:description" content="شاهد الفيديو على متجر lilirop">
-    <meta property="og:image" content="https://hassannben.github.io/lilirop/images/image1_.jpg">
+    <meta property="og:image" content="https://hassannben.github.io/lilirop/images/5597178895.mp4">
     <meta property="og:video" content="https://hassannben.github.io/lilirop/images/5597178895.mp4" />
     <meta property="og:video:type" content="video/mp4" />
     <meta property="og:url" content="https://hassannben.github.io/lilirop/">
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="player">
     <meta name="twitter:title" content="متجر lilirop">
     <meta name="twitter:description" content="شاهد الفيديو على متجر lilirop">
-    <meta name="twitter:image" content="https://hassannben.github.io/lilirop/images/image1_.jpg">
+    <meta name="twitter:image" content="https://hassannben.github.io/lilirop/images/5597178895.mp4">
     <meta name="twitter:player" content="https://hassannben.github.io/lilirop/images/5597178895.mp4">
     <meta name="twitter:player:width" content="640">
     <meta name="twitter:player:height" content="360">
@@ -144,36 +144,6 @@
         </form>
     </section>
 
-    <script>
- document.getElementById('videoButton').onclick = function() {
-        var modal = document.getElementById('videoModal');
-        var video = document.getElementById('videoPlayer');
-        modal.style.display = 'block';
-        
-        // تأكد من تشغيل الفيديو بعد التأخير لضمان تحميله
-        setTimeout(function() {
-            video.play();
-        }, 100);
-    }
-
-    document.querySelector('.close').onclick = function() {
-        var modal = document.getElementById('videoModal');
-        var video = document.getElementById('videoPlayer');
-        modal.style.display = 'none';
-        video.pause(); // إيقاف الفيديو عند إغلاق المودال
-        video.currentTime = 0; // إعادة تعيين توقيت الفيديو إلى البداية
-    }
-
-    window.onclick = function(event) {
-        if (event.target === document.getElementById('videoModal')) {
-            var modal = document.getElementById('videoModal');
-            var video = document.getElementById('videoPlayer');
-            modal.style.display = 'none';
-            video.pause(); // إيقاف الفيديو عند النقر خارج المودال
-            video.currentTime = 0; // إعادة تعيين توقيت الفيديو إلى البداية
-        }
-    }
-    </script>
     <script src="script.js"></script>
 </body>
 

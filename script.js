@@ -71,14 +71,8 @@ function updateTotals() {
 }
 
 // Function to handle form submission
-// Function to handle form submission
 async function submitOrder(event) {
     event.preventDefault(); // Prevent the default form submission
-
-    // تعيين التاريخ والوقت عند تقديم النموذج
-    const now = new Date();
-    document.getElementById('date').value = now.toISOString().split('T')[0];
-    document.getElementById('time').value = now.toTimeString().split(' ')[0];
 
     // Retrieve form values
     const name = document.getElementById('name').value.trim();
@@ -147,3 +141,20 @@ async function submitOrder(event) {
     }
 }
 
+function changeImage(src) {
+    document.getElementById('currentImage').src = src;
+}
+// JavaScript
+document.getElementById('videoButton').onclick = function() {
+    document.getElementById('videoModal').style.display = 'block';
+}
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('videoModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('videoModal')) {
+        document.getElementById('videoModal').style.display = 'none';
+    }
+}
