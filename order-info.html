@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,20 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-       body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             color: #333;
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .order-info {
             background-color: #ffffff;
             border-radius: 12px;
@@ -29,6 +32,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .order-info::before {
             content: '';
             position: absolute;
@@ -39,6 +43,7 @@
             background: linear-gradient(90deg, #007bff, #0056b3);
             border-radius: 0 0 12px 12px;
         }
+
         .order-info h2 {
             margin-top: 0;
             font-size: 32px;
@@ -49,6 +54,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
+
         .order-info p {
             margin: 15px 0;
             font-size: 18px;
@@ -57,13 +63,16 @@
             display: flex;
             align-items: center;
         }
+
         .order-info p strong {
             color: #333;
             min-width: 150px;
         }
+
         .order-info p span {
             color: #6c757d;
         }
+
         .order-info a {
             display: inline-block;
             margin-top: 25px;
@@ -75,46 +84,55 @@
             transition: color 0.3s ease, border-bottom 0.3s ease;
             padding: 5px 0;
         }
+
         .order-info a:hover {
             color: #0056b3;
             border-bottom: 3px solid #0056b3;
         }
+
         @media (max-width: 768px) {
             .order-info {
                 padding: 25px;
             }
+
             .order-info h2 {
                 font-size: 28px;
             }
+
             .order-info p {
                 font-size: 16px;
             }
+
             .order-info a {
                 font-size: 18px;
             }
         }
+
         @media (max-width: 480px) {
             .order-info {
                 padding: 20px;
                 margin-top: 20px;
             }
+
             .order-info h2 {
                 font-size: 24px;
             }
+
             .order-info p {
                 font-size: 14px;
             }
+
             .order-info a {
                 font-size: 16px;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="order-info">
             <h2>تم تلقي طلبك بنجاح</h2>
-            <p><strong>رقم الطلب:</strong> <span id="orderNumber">غير متوفر</span></p>
             <p><strong>اسم المنتج:</strong> <span id="productName">غير متوفر</span></p>
             <p><strong>الاسم:</strong> <span id="name">غير متوفر</span></p>
             <p><strong>رقم الهاتف:</strong> <span id="phone">غير متوفر</span></p>
@@ -130,21 +148,22 @@
     </div>
 
     <script>
-   const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
 
-// عرض القيم من عنوان URL أو القيمة الافتراضية إذا لم تكن موجودة
-document.getElementById('orderNumber').textContent = urlParams.get('orderNumber') || 'غير متوفر';
-document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
-document.getElementById('name').textContent = urlParams.get('name') || 'غير متوفر';
-document.getElementById('phone').textContent = urlParams.get('phone') || 'غير متوفر';
-document.getElementById('city').textContent = urlParams.get('city') || 'غير متوفر';
-document.getElementById('address').textContent = urlParams.get('address') || 'غير متوفر';
-document.getElementById('quantity').textContent = urlParams.get('quantity') || 'غير متوفر';
-document.getElementById('deliveryCost').textContent = urlParams.get('deliveryCost') || 'غير متوفر';
-document.getElementById('total').textContent = urlParams.get('total') || 'غير متوفر';
-document.getElementById('date').textContent = urlParams.get('date') || 'غير متوفر';
-document.getElementById('time').textContent = urlParams.get('time') || 'غير متوفر';
+        // عرض القيم من عنوان URL أو القيمة الافتراضية إذا لم تكن موجودة
+        document.getElementById('orderNumber').textContent = urlParams.get('orderNumber') || 'غير متوفر';
+        document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
+        document.getElementById('name').textContent = urlParams.get('name') || 'غير متوفر';
+        document.getElementById('phone').textContent = urlParams.get('phone') || 'غير متوفر';
+        document.getElementById('city').textContent = urlParams.get('city') || 'غير متوفر';
+        document.getElementById('address').textContent = urlParams.get('address') || 'غير متوفر';
+        document.getElementById('quantity').textContent = urlParams.get('quantity') || 'غير متوفر';
+        document.getElementById('deliveryCost').textContent = urlParams.get('deliveryCost') || 'غير متوفر';
+        document.getElementById('total').textContent = urlParams.get('total') || 'غير متوفر';
+        document.getElementById('date').textContent = urlParams.get('date') || 'غير متوفر';
+        document.getElementById('time').textContent = urlParams.get('time') || 'غير متوفر';
 
     </script>
 </body>
+
 </html>
