@@ -155,10 +155,10 @@
     </div>
 
     <script>
-        // الحصول على معلومات الطلب من معلمات URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderNumber = urlParams.get('orderNumber') || 'غير متوفر';
-        
+  const urlParams = new URLSearchParams(window.location.search);
+const orderNumber = urlParams.get('orderNumber') || 'غير متوفر';
+console.log("Order Number:", orderNumber);
+document.getElementById('orderNumber').textContent = orderNumber;    
         // عرض معلومات الطلب
         document.getElementById('orderNumber').textContent = orderNumber;
         document.getElementById('productName').textContent = urlParams.get('productName') || 'غير متوفر';
