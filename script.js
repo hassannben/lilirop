@@ -85,7 +85,10 @@ function updateDateTimeFields() {
 // Function to handle form submission
 async function submitOrder(event) {
     event.preventDefault(); // Prevent the default form submission
-    updateDateTimeFields(); // Ensure date and time are updated before submission
+
+    const now = new Date();
+    const todayDate = now.toLocaleDateString('ar-EG');
+    const currentTime = now.toLocaleTimeString('ar-EG', { hour12: false });
 
     const dateField = document.getElementById('date');
     const timeField = document.getElementById('time');
@@ -98,8 +101,8 @@ async function submitOrder(event) {
     const quantity = parseInt(document.getElementById('quantity').value, 10);
     const deliveryCost = document.getElementById('deliveryCost').value.trim();
     const total = document.getElementById('total').value.trim();
-    const date = dateField.value.trim();
-    const time = timeField.value.trim();
+    const date = document.getElementById('date').value.trim();
+    const time = document.getElementById('time').value.trim();
     const productName = document.getElementById('productName').value.trim();
 
     // Validate quantity
@@ -137,6 +140,18 @@ async function submitOrder(event) {
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
+
+        // Clear form fields
+        document.getElementById('name').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('city').value = '';
+        document.getElementById('address').value = '';
+        document.getElementById('quantity').value = '';
+        document.getElementById('deliveryCost').value = '';
+        document.getElementById('total').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('time').value = '';
+        document.getElementById('productName').value = '';
 
         // Redirect to order info page
         window.location.href = 'https://hassannben.github.io/lilirop/order-info.html?' + new URLSearchParams({

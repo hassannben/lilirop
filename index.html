@@ -70,7 +70,7 @@
         
         <form id="orderForm" onsubmit="submitOrder(event)">
             <select id="city" name="city" required onchange="updateTotals()">
-                <option value="اختر الولاية">اختر الولاية</option>
+               
                 <option value="اختر الولاية">اختر الولاية</option>
                 <option value="أدرار">01 - أدرار</option>
                 <option value="الشلف">02 - الشلف</option>
@@ -135,7 +135,8 @@
             <input type="text" id="name" name="name" placeholder="الاسم و اللقب" required>
             <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required style="direction: rtl; text-align: right;">
           <input type="text" id="address" name="address" placeholder="العنوان" required>
-            <input type="number" id="quantity" name="quantity" placeholder="الكمية" required oninput="updateTotals()">
+          <input type="number" id="quantity" name="quantity" placeholder="الكمية" required min="1" oninput="updateTotals()">
+
             <input type="text" id="deliveryCost" name="deliveryCost" placeholder="تكلفة التوصيل" readonly>
             <input type="text" id="total" name="total" placeholder="المجموع" readonly>
             <input type="hidden" id="date" name="date">
