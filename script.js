@@ -1,3 +1,4 @@
+// Constants for product price and delivery costs
 const productPrice = 1500;
 const deliveryCosts = {
     "الجزائر": 400,
@@ -49,6 +50,7 @@ const deliveryCosts = {
     "عين صلاح": 1500,
     "تندوف": 1700
 };
+
 // Function to update the delivery cost and total based on quantity and city
 function updateTotals() {
     const quantity = parseInt(document.getElementById('quantity').value, 10) || 1;
@@ -70,9 +72,23 @@ function updateTotals() {
     document.getElementById('total').value = `${total} دج`;
 }
 
+// Function to update the date and time fields
+function updateDateTimeFields() {
+    const now = new Date();
+    const todayDate = now.toLocaleDateString('ar-EG');
+    const currentTime = now.toLocaleTimeString('ar-EG', { hour12: false });
+
+    document.getElementById('date').value = todayDate;
+    document.getElementById('time').value = currentTime;
+}
+
 // Function to handle form submission
 async function submitOrder(event) {
     event.preventDefault(); // Prevent the default form submission
+    updateDateTimeFields(); // Ensure date and time are updated before submission
+
+    const dateField = document.getElementById('date');
+    const timeField = document.getElementById('time');
 
     // Retrieve form values
     const name = document.getElementById('name').value.trim();
@@ -82,8 +98,8 @@ async function submitOrder(event) {
     const quantity = parseInt(document.getElementById('quantity').value, 10);
     const deliveryCost = document.getElementById('deliveryCost').value.trim();
     const total = document.getElementById('total').value.trim();
-    const date = document.getElementById('date').value.trim();
-    const time = document.getElementById('time').value.trim();
+    const date = dateField.value.trim();
+    const time = timeField.value.trim();
     const productName = document.getElementById('productName').value.trim();
 
     // Validate quantity
@@ -123,7 +139,7 @@ async function submitOrder(event) {
         }
 
         // Redirect to order info page
-        window.location.href = 'order-info.html?' + new URLSearchParams({
+        window.location.href = 'https://hassannben.github.io/lilirop/order-info.html?' + new URLSearchParams({
             name,
             phone,
             city,
@@ -141,10 +157,12 @@ async function submitOrder(event) {
     }
 }
 
+// Function to handle image change
 function changeImage(src) {
     document.getElementById('currentImage').src = src;
 }
-// JavaScript
+
+// Function to handle video modal display
 document.getElementById('videoButton').onclick = function() {
     document.getElementById('videoModal').style.display = 'block';
 }
@@ -158,3 +176,6 @@ window.onclick = function(event) {
         document.getElementById('videoModal').style.display = 'none';
     }
 }
+
+// Ensure date and time fields are updated on page load
+updateDateTimeFields();
