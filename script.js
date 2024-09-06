@@ -90,9 +90,6 @@ async function submitOrder(event) {
     const todayDate = now.toLocaleDateString('ar-EG');
     const currentTime = now.toLocaleTimeString('ar-EG', { hour12: false });
 
-    const dateField = document.getElementById('date');
-    const timeField = document.getElementById('time');
-
     // Retrieve form values
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -111,9 +108,17 @@ async function submitOrder(event) {
         return;
     }
 
-    // Validate that all required fields are filled
-    if (!name || !phone || !city || !address || !productName) {
-        alert("يرجى ملء جميع الحقول.");
+    // Check for missing fields
+    let missingFields = [];
+    if (!name) missingFields.push('الاسم');
+    if (!phone) missingFields.push('رقم الهاتف');
+    if (!city) missingFields.push('المدينة');
+    if (!address) missingFields.push('العنوان');
+ 
+
+    // If there are missing fields, alert the user
+    if (missingFields.length > 0) {
+        alert("يرجى ملء الحقول التالية: " + missingFields.join(', '));
         return;
     }
 
@@ -171,6 +176,7 @@ async function submitOrder(event) {
         alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
     }
 }
+
 
 // Function to handle image change
 function changeImage(src) {
