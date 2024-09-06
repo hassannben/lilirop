@@ -75,8 +75,8 @@ function updateTotals() {
 // Function to update the date and time fields
 function updateDateTimeFields() {
     const now = new Date();
-    const todayDate = now.toLocaleDateString('ar-EG');
-    const currentTime = now.toLocaleTimeString('ar-EG', { hour12: false });
+    const todayDate = now.toLocaleDateString('EG');
+    const currentTime = now.toLocaleTimeString('EG', { hour12: false });
 
     document.getElementById('date').value = todayDate;
     document.getElementById('time').value = currentTime;
