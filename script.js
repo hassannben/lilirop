@@ -87,8 +87,8 @@ async function submitOrder(event) {
     event.preventDefault(); // Prevent the default form submission
 
     const now = new Date();
-    const todayDate = now.toLocaleDateString('ar-EG');
-    const currentTime = now.toLocaleTimeString('ar-EG', { hour12: false });
+    const todayDate = now.toLocaleDateString('EG');
+    const currentTime = now.toLocaleTimeString('EG', { hour12: false });
 
     // Retrieve form values
     const name = document.getElementById('name').value.trim();
@@ -114,13 +114,17 @@ async function submitOrder(event) {
     if (!phone) missingFields.push('رقم الهاتف');
     if (!city) missingFields.push('المدينة');
     if (!address) missingFields.push('العنوان');
- 
-
+   
     // If there are missing fields, alert the user
     if (missingFields.length > 0) {
         alert("يرجى ملء الحقول التالية: " + missingFields.join(', '));
         return;
     }
+
+    // Display loading message
+    const submitButton = document.querySelector('input[type="submit"]');
+    submitButton.value = 'جارٍ الطلب...';
+    submitButton.disabled = true; // Disable button to prevent multiple submissions
 
     // Prepare data to send
     const formData = new FormData();
@@ -158,6 +162,10 @@ async function submitOrder(event) {
         document.getElementById('time').value = '';
         document.getElementById('productName').value = '';
 
+        // Reset submit button
+        submitButton.value = 'تأكيد الطلب';
+        submitButton.disabled = false;
+
         // Redirect to order info page
         window.location.href = 'https://hassannben.github.io/lilirop/order-info.html?' + new URLSearchParams({
             name,
@@ -174,8 +182,14 @@ async function submitOrder(event) {
     } catch (error) {
         console.error('Error:', error);
         alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
+
+        // Reset submit button
+        submitButton.value = 'تأكيد الطلب';
+        submitButton.disabled = false;
     }
 }
+
+
 
 
 // Function to handle image change
