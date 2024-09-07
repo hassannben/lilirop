@@ -141,7 +141,7 @@ async function submitOrder(event) {
     formData.append('productName', productName);
 
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyipcoqqRFSG60QhUcNCO4T32BwwdVq9xpU3LAnfr5esggXG8F25FeMYwOn0aBaMZBK/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw0PWSmkuxekE4n6cFt14vPhFut59TnNfDoqKq4NMptIpiHGSXvwBazFfSqoCehwGA/exec', {
             method: 'POST',
             body: formData
         });
@@ -167,7 +167,7 @@ async function submitOrder(event) {
         submitButton.disabled = false;
 
         // Redirect to order info page
-        window.location.href = 'https://hassannben.github.io/lilirop/order-info.html?' + new URLSearchParams({
+        window.location.href = 'order-info.html?' + new URLSearchParams({
             name,
             phone,
             city,
